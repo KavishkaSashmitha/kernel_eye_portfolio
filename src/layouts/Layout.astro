@@ -1,0 +1,66 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "KernelEye is a university research project on runtime-aware Kubernetes intelligence using eBPF telemetry for adaptive traffic management.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+  </head>
+  <body
+    class="min-h-screen flex flex-col font-sans bg-zinc-950 text-slate-300 relative overflow-x-hidden"
+  >
+    <!-- Subtle background gradients -->
+    <div
+      class="bg-ambient fixed inset-0 z-[-1] bg-[radial-gradient(ellipse_70%_70%_at_50%_-10%,rgba(56,189,248,0.22),rgba(255,255,255,0))]"
+    >
+    </div>
+    <div
+      class="bg-ambient fixed inset-0 z-[-2] bg-[radial-gradient(ellipse_60%_60%_at_80%_20%,rgba(14,165,233,0.16),rgba(0,0,0,0))]"
+    >
+    </div>
+    <div
+      class="bg-ambient fixed inset-0 z-[-3] bg-[radial-gradient(ellipse_80%_80%_at_20%_80%,rgba(37,99,235,0.14),rgba(0,0,0,0))]"
+    >
+    </div>
+    <div
+      class="bg-ambient fixed inset-0 z-[-4] opacity-[0.25] bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.03)_1px,transparent_0)] [background-size:24px_24px]"
+    >
+    </div>
+
+    <Navbar />
+
+    <main class="flex-grow pt-24">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

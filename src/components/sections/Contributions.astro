@@ -1,0 +1,85 @@
+---
+const components = [
+  {
+    title: "eBPF Telemetry Layer",
+    description: "Collects kernel-level runtime and network metrics with low overhead to improve observability without sidecar proxies.",
+    tags: ["eBPF", "Kernel Telemetry", "Observability"],
+    accent: "sky",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />`
+  },
+  {
+    title: "Intent-Aware Traffic Routing",
+    description: "Redirects service traffic using live telemetry and runtime health signals to maintain better performance and availability.",
+    tags: ["Routing", "Intent", "Health Signals"],
+    accent: "violet",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />`
+  },
+  {
+    title: "Runtime-Aware Scaling & Scheduling",
+    description: "Supports smarter scaling and workload placement decisions using real performance conditions beyond CPU and memory alone.",
+    tags: ["Scaling", "Scheduling", "Runtime Context"],
+    accent: "emerald",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />`
+  },
+  {
+    title: "Distributed Coordination Layer",
+    description: "Shares node-level telemetry across the cluster to support broader orchestration awareness and coordinated decision making.",
+    tags: ["Coordination", "Cluster-wide", "Telemetry Sharing"],
+    accent: "amber",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />`
+  }
+];
+
+const accentStyles: Record<string, { icon: string; tag: string; dot: string }> = {
+  sky:     { icon: "bg-sky-500/15 border-sky-400/30 text-sky-300",     tag: "bg-sky-500/10 border-sky-400/25 text-sky-300",     dot: "bg-sky-400" },
+  violet:  { icon: "bg-violet-500/15 border-violet-400/30 text-violet-300", tag: "bg-violet-500/10 border-violet-400/25 text-violet-300", dot: "bg-violet-400" },
+  emerald: { icon: "bg-emerald-500/15 border-emerald-400/30 text-emerald-300", tag: "bg-emerald-500/10 border-emerald-400/25 text-emerald-300", dot: "bg-emerald-400" },
+  amber:   { icon: "bg-amber-500/15 border-amber-400/30 text-amber-300",  tag: "bg-amber-500/10 border-amber-400/25 text-amber-300",  dot: "bg-amber-400" },
+};
+---
+
+<section id="contributions" class="py-16 relative">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 reveal">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
+          Core Research Components
+        </h2>
+        <p class="text-slate-300 mt-3 max-w-2xl text-sm">
+          Four system elements designed to enable telemetry-driven orchestration in Kubernetes environments.
+        </p>
+      </div>
+      <div class="glass-soft rounded-xl px-4 py-2.5 border border-white/10 text-sm shrink-0">
+        <span class="text-slate-400">Focus: </span>
+        <span class="text-sky-300 font-medium">Sidecar-less orchestration</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {components.map((component) => {
+        const a = accentStyles[component.accent];
+        return (
+          <div class="glass-soft card-hover rounded-2xl p-5 border border-white/10 reveal">
+            <div class="flex items-start gap-3 mb-3">
+              <span class={`w-9 h-9 shrink-0 rounded-lg border flex items-center justify-center ${a.icon}`}>
+                <svg class="w-4.5 h-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"
+                  set:html={component.icon} />
+              </span>
+              <h3 class="text-base font-semibold text-white leading-snug pt-1">{component.title}</h3>
+            </div>
+            <p class="text-sm text-slate-300 leading-relaxed mb-4">{component.description}</p>
+            <div class="flex flex-wrap gap-1.5">
+              {component.tags.map((tag) => (
+                <span class={`text-xs px-2.5 py-0.5 rounded-full border font-medium ${a.tag}`}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,155 @@
+---
+const milestones = [
+  {
+    title: "Topic Assessment",
+    num: "M1",
+    status: "Done",
+    tags: ["#research", "#scope"],
+    description: "Established the core problem statement and validated the initial research direction.",
+  },
+  {
+    title: "Proposal Presentation",
+    num: "M2",
+    status: "Done",
+    tags: ["#proposal", "#planning"],
+    description: "Presented the project scope, motivation, objectives, and proposed solution strategy.",
+  },
+  {
+    title: "Progress Presentation 1",
+    num: "M3",
+    status: "Done",
+    tags: ["#design", "#architecture"],
+    description: "Reviewed the initial system design, architecture decisions, and module-level direction.",
+  },
+  {
+    title: "Progress Presentation 2",
+    num: "M4",
+    status: "Done",
+    tags: ["#implementation", "#validation"],
+    description: "Demonstrated implementation progress with focused validation of key components.",
+  },
+  {
+    title: "Research Paper",
+    num: "M5",
+    status: "Done",
+    tags: ["#paper", "#publication"],
+    description: "Developed the research manuscript with technical analysis and publication-ready documentation.",
+  },
+  {
+    title: "Final Report",
+    num: "M6",
+    status: "In Work",
+    tags: ["#report", "#evaluation"],
+    description: "Compiling the complete project report, including implementation details and evaluation outcomes.",
+  },
+  {
+    title: "Final Presentation / Viva",
+    num: "M7",
+    status: "Planned",
+    tags: ["#defense", "#demo"],
+    description: "Preparing for the final defense with a comprehensive demonstration of research outcomes.",
+  },
+];
+
+function chipClass(status: string) {
+  if (status === "Done")    return "badge-completed";
+  if (status === "In Work") return "badge-ongoing";
+  return "badge-upcoming";
+}
+---
+
+<section id="milestones" class="py-16 relative bg-zinc-900/30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
+        Project Milestones
+      </h2>
+      <p class="text-slate-300 mt-2 text-sm">
+        Key research checkpoints and academic deliverables.
+      </p>
+    </div>
+
+    <!-- Horizontal scrollable roadmap (md+) -->
+    <div class="hidden md:block">
+      <div class="overflow-x-auto pb-4 -mx-4 px-4">
+        <div class="flex items-stretch gap-0 min-w-max">
+
+          {milestones.map((item, index) => {
+            const isLast = index === milestones.length - 1;
+            const delay = index * 80;
+            return (
+              <div class="flex items-stretch">
+                <!-- Card -->
+                <div
+                  class="reveal w-52 glass-soft rounded-xl border border-white/10 p-4 hover:border-sky-400/30 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 cursor-default flex flex-col"
+                  style={`transition-delay: ${delay}ms`}
+                >
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-xs font-mono text-slate-500">{item.num}</span>
+                    <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ${chipClass(item.status)}`}>
+                      {item.status}
+                    </span>
+                  </div>
+                  <h3 class="text-sm font-semibold text-white leading-snug mb-2">{item.title}</h3>
+                  <p class="text-xs text-slate-400 leading-relaxed mb-3 flex-1">{item.description}</p>
+                  <div class="flex flex-wrap gap-1">
+                    {item.tags.map(tag => (
+                      <span class="text-xs text-slate-500 bg-white/5 rounded px-1.5 py-0.5">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <!-- Connector arrow -->
+                {!isLast && (
+                  <div class="flex items-center self-center shrink-0">
+                    <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="8" x2="28" y2="8" stroke="rgba(56,189,248,0.35)" stroke-width="1.5" stroke-dasharray="4 3">
+                        <animate attributeName="stroke-dashoffset" from="14" to="0" dur="1.2s" repeatCount="indefinite"/>
+                      </line>
+                      <polygon points="26,4 35,8 26,12" fill="rgba(56,189,248,0.4)"/>
+                    </svg>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile: vertical list -->
+    <div class="md:hidden space-y-3">
+      {milestones.map((item, index) => {
+        const isLast = index === milestones.length - 1;
+        const delay = index * 80;
+        return (
+          <div class="flex gap-3 reveal" style={`transition-delay: ${delay}ms`}>
+            <div class="flex flex-col items-center shrink-0 pt-1">
+              <div class="w-6 h-6 rounded-full border border-white/20 bg-zinc-900 flex items-center justify-center">
+                <span class="text-xs text-slate-500 font-mono">{index + 1}</span>
+              </div>
+              {!isLast && <div class="w-px flex-1 bg-white/10 mt-1"></div>}
+            </div>
+            <div class="glass-soft rounded-xl border border-white/10 p-4 flex-1 mb-3">
+              <div class="flex items-center justify-between mb-1.5">
+                <h3 class="text-sm font-semibold text-white">{item.title}</h3>
+                <span class={`text-xs px-2 py-0.5 rounded-full border font-medium ml-2 shrink-0 ${chipClass(item.status)}`}>
+                  {item.status}
+                </span>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed mb-2">{item.description}</p>
+              <div class="flex flex-wrap gap-1">
+                {item.tags.map(tag => (
+                  <span class="text-xs text-slate-500 bg-white/5 rounded px-1.5 py-0.5">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
