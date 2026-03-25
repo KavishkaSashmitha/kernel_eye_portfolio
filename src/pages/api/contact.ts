@@ -11,12 +11,10 @@ const MAX_FIELD_LENGTH = {
 const json = (payload: Record<string, unknown>, status = 200) =>
   new Response(JSON.stringify(payload), {
     status,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
   });
 
-const sanitize = (value: FormDataEntryValue | null, maxLen: number) => {
+const sanitize = (value: unknown, maxLen: number): string => {
   if (typeof value !== 'string') return '';
   return value.trim().slice(0, maxLen);
 };
@@ -30,15 +28,21 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   }
 
   const contentType = request.headers.get('content-type') || '';
-  if (!contentType.includes('application/x-www-form-urlencoded') && !contentType.includes('multipart/form-data')) {
+  if (!contentType.includes('application/json')) {
     return json({ error: 'Unsupported content type.' }, 415);
   }
 
-  const formData = await request.formData();
-  const name = sanitize(formData.get('name'), MAX_FIELD_LENGTH.name);
-  const email = sanitize(formData.get('email'), MAX_FIELD_LENGTH.email).toLowerCase();
-  const subject = sanitize(formData.get('subject'), MAX_FIELD_LENGTH.subject);
-  const message = sanitize(formData.get('message'), MAX_FIELD_LENGTH.message);
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'Invalid JSON body.' }, 400);
+  }
+
+  const name    = sanitize(body.name,    MAX_FIELD_LENGTH.name);
+  const email   = sanitize(body.email,   MAX_FIELD_LENGTH.email).toLowerCase();
+  const subject = sanitize(body.subject, MAX_FIELD_LENGTH.subject);
+  const message = sanitize(body.message, MAX_FIELD_LENGTH.message);
 
   if (!name || !email || !subject || !message) {
     return json({ error: 'All fields are required.' }, 400);
