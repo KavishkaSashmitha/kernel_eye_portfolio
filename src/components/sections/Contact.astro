@@ -1,38 +1,54 @@
 ---
+
 ---
 
 <section id="contact" class="py-16 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10 reveal">
-      <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
+      <h2
+        class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white"
+      >
         Contact Us
       </h2>
       <p class="mt-4 text-slate-400 max-w-2xl mx-auto text-lg">
-        Reach out for research inquiries, collaboration, or access to KernelEye resources.
+        Reach out for research inquiries, collaboration, or access to KernelEye
+        resources.
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div class="glass-soft card-hover p-6 md:p-8 rounded-2xl border border-white/10 reveal">
-        <form class="grid grid-cols-1 gap-6">
+      <div
+        class="glass-soft card-hover p-6 md:p-8 rounded-2xl border border-white/10 reveal"
+      >
+        <form
+          id="contact-form"
+          class="grid grid-cols-1 gap-6"
+          method="post"
+          action="/api/contact"
+          novalidate
+        >
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
-              <label for="name" class="text-sm font-medium text-slate-300">Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
+              <label for="name" class="text-sm font-medium text-slate-300"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                name="name"
                 placeholder="Jane Doe"
                 class="w-full bg-zinc-900/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500/50 transition-all"
                 required
               />
             </div>
             <div class="space-y-2">
-              <label for="email" class="text-sm font-medium text-slate-300">Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
+              <label for="email" class="text-sm font-medium text-slate-300"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
                 placeholder="jane@university.edu"
                 class="w-full bg-zinc-900/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500/50 transition-all"
                 required
@@ -40,41 +56,91 @@
             </div>
           </div>
           <div class="space-y-2">
-            <label for="subject" class="text-sm font-medium text-slate-300">Subject</label>
-            <input 
-              type="text" 
-              id="subject" 
-              name="subject" 
+            <label for="subject" class="text-sm font-medium text-slate-300"
+              >Subject</label
+            >
+            <input
+              type="text"
+              id="subject"
+              name="subject"
               placeholder="Collaboration or research request"
               class="w-full bg-zinc-900/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500/50 transition-all"
               required
             />
           </div>
           <div class="space-y-2">
-              <label for="message" class="text-sm font-medium text-slate-300">Message</label>
-            <textarea 
-              id="message" 
-              name="message" 
-              rows="5" 
+            <label for="message" class="text-sm font-medium text-slate-300"
+              >Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
               placeholder="Share your interest in KernelEye..."
               class="w-full bg-zinc-900/60 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500/50 focus:border-sky-500/50 transition-all resize-none"
-              required
-            ></textarea>
+              required></textarea>
           </div>
           <div class="pt-2">
-            <button 
-              type="button" 
+            <button
+              type="submit"
+              id="contact-submit"
               class="focus-ring inline-flex items-center justify-center gap-2 px-8 py-4 w-full md:w-auto rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-medium transition-all transform hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(56,189,248,0.4)] group"
             >
               <span>Send Message</span>
-              <svg class="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+              <svg
+                class="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg
+              >
             </button>
+            <p
+              id="contact-status"
+              class="text-sm text-slate-400"
+              role="status"
+              aria-live="polite"
+            >
+            </p>
           </div>
         </form>
+
+        <!-- Success state (hidden by default) -->
+        <div
+          id="contact-success"
+          class="hidden flex-col items-center justify-center text-center py-10 gap-6"
+          role="status"
+          aria-live="polite"
+        >
+          <div class="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+            <svg class="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div class="space-y-2">
+            <h3 class="text-xl font-semibold text-white">Message Received</h3>
+            <p class="text-slate-400 max-w-xs mx-auto text-sm leading-relaxed">
+              Thank you for reaching out. We'll review your message and get back to you as soon as possible.
+            </p>
+          </div>
+          <button
+            id="contact-reset"
+            class="text-sm text-sky-400 hover:text-sky-300 underline underline-offset-4 transition-colors"
+          >
+            Send another message
+          </button>
+        </div>
       </div>
 
       <div class="flex flex-col gap-6">
-        <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 reveal">
+        <div
+          class="glass-soft card-hover rounded-2xl p-6 border border-white/10 reveal"
+        >
           <h3 class="text-xl font-semibold text-white">Project Contact</h3>
           <p class="text-slate-400 mt-3">
             KernelEye Research Project<br />
@@ -83,38 +149,149 @@
           </p>
           <div class="mt-6 space-y-3 text-sm text-slate-300">
             <div class="flex items-center gap-3">
-              <span class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l9 6 9-6M5 6h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"></path>
+              <span
+                class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l9 6 9-6M5 6h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"
+                  ></path>
                 </svg>
               </span>
               <span>kernel-eye@research.edu</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.5 4.5a1 1 0 01-.502 1.21l-2.4 1.2a16 16 0 007.2 7.2l1.2-2.4a1 1 0 011.21-.502l4.5 1.5a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+              <span
+                class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.5 4.5a1 1 0 01-.502 1.21l-2.4 1.2a16 16 0 007.2 7.2l1.2-2.4a1 1 0 011.21-.502l4.5 1.5a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  ></path>
                 </svg>
               </span>
               <span>+94 11 000 0000</span>
             </div>
             <div class="flex items-center gap-3">
-              <span class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-3-3h-4m-2 5H2v-2a3 3 0 013-3h4m4-6a4 4 0 11-8 0 4 4 0 018 0zm6 6a3 3 0 10-6 0 3 3 0 006 0z"></path>
+              <span
+                class="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-300"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-3-3h-4m-2 5H2v-2a3 3 0 013-3h4m4-6a4 4 0 11-8 0 4 4 0 018 0zm6 6a3 3 0 10-6 0 3 3 0 006 0z"
+                  ></path>
                 </svg>
               </span>
-              <span>Open to academic collaborations and research partnerships.</span>
+              <span
+                >Open to academic collaborations and research partnerships.</span
+              >
             </div>
           </div>
         </div>
-        <div class="glass-soft card-hover rounded-2xl p-6 border border-white/10 reveal">
-          <h3 class="text-lg font-semibold text-white">Institutional Context</h3>
+        <div
+          class="glass-soft card-hover rounded-2xl p-6 border border-white/10 reveal"
+        >
+          <h3 class="text-lg font-semibold text-white">
+            Institutional Context
+          </h3>
           <p class="text-slate-400 mt-3">
-            KernelEye is developed as a final year research project within SLIIT Faculty of Computing.
+            KernelEye is developed as a final year research project within SLIIT
+            Faculty of Computing.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.querySelector("#contact-form");
+  const status = document.querySelector("#contact-status");
+  const submitButton = document.querySelector("#contact-submit");
+  const successCard = document.querySelector("#contact-success");
+  const resetButton = document.querySelector("#contact-reset");
+
+  if (
+    form instanceof HTMLFormElement &&
+    status instanceof HTMLElement &&
+    submitButton instanceof HTMLButtonElement &&
+    successCard instanceof HTMLElement
+  ) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      submitButton.disabled = true;
+      status.textContent = "Sending your message...";
+      status.className = "text-sm text-slate-400";
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          const message =
+            typeof data.error === "string"
+              ? data.error
+              : "Unable to submit your message right now.";
+          status.textContent = message;
+          status.className = "text-sm text-rose-400";
+          submitButton.disabled = false;
+          return;
+        }
+
+        // Show success card, hide form
+        form.classList.add("hidden");
+        successCard.classList.remove("hidden");
+        successCard.classList.add("flex");
+        status.textContent = "";
+        form.reset();
+      } catch {
+        status.textContent = "Network error. Please try again.";
+        status.className = "text-sm text-rose-400";
+        submitButton.disabled = false;
+      }
+    });
+
+    // "Send another message" resets to form view
+    resetButton?.addEventListener("click", () => {
+      successCard.classList.add("hidden");
+      successCard.classList.remove("flex");
+      form.classList.remove("hidden");
+      submitButton.disabled = false;
+      status.textContent = "";
+    });
+  }
+</script>
