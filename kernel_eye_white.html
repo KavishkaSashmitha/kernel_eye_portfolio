@@ -5,385 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>KernelEye | Runtime-Aware Kubernetes Intelligence</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Inter', sans-serif;
-  background: #ffffff;
-  color: #0f172a;
-  font-size: 15px;
-  line-height: 1.7;
-  overflow-x: hidden;
-}
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #f8fafc; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
-
-/* NAV */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid #e2e8f0;
-  height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw;
-}
-.nav-logo {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 18px; font-weight: 700;
-  color: #0f172a; text-decoration: none;
-  display: flex; align-items: center; gap: 8px;
-}
-.nav-dot { width: 8px; height: 8px; border-radius: 50%; background: #6366f1; display: inline-block; }
-.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
-.nav-links a {
-  font-size: 13px; font-weight: 500; color: #64748b;
-  text-decoration: none; padding: 7px 14px; border-radius: 8px;
-  transition: color 0.15s, background 0.15s;
-}
-.nav-links a:hover { color: #0f172a; background: #f1f5f9; }
-.nav-cta {
-  background: #6366f1 !important; color: #fff !important;
-  border-radius: 8px !important;
-}
-.nav-cta:hover { background: #4f46e5 !important; color: #fff !important; }
-
-/* HERO */
-#home {
-  padding: 96px 5vw 80px;
-  background: linear-gradient(135deg, #fafbff 0%, #f0f4ff 50%, #fafbff 100%);
-  border-bottom: 1px solid #e2e8f0;
-  position: relative; overflow: hidden;
-}
-#home::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
-}
-.hero-wrap {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 56px; align-items: center;
-  max-width: 1160px; position: relative; z-index: 1;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 12px; font-weight: 500; color: #6366f1;
-  background: #eef2ff; border: 1px solid #c7d2fe;
-  padding: 5px 14px; border-radius: 999px; margin-bottom: 24px;
-}
-.hero-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:#6366f1; animation: blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-.hero-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: clamp(2.8rem, 5vw, 4rem);
-  font-weight: 700; color: #0f172a;
-  line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 14px;
-}
-.hero-subtitle {
-  font-size: clamp(1rem, 1.6vw, 1.15rem);
-  color: #475569; margin-bottom: 20px; line-height: 1.6; max-width: 500px;
-}
-.hero-desc {
-  font-size: 14px; color: #94a3b8; line-height: 1.8; max-width: 480px; margin-bottom: 32px;
-}
-.hero-btns { display: flex; gap: 12px; margin-bottom: 48px; }
-.btn-primary {
-  background: #6366f1; color: #fff; text-decoration: none;
-  padding: 11px 22px; border-radius: 10px; font-size: 14px; font-weight: 600;
-  transition: background 0.15s, transform 0.15s; display: inline-flex; align-items: center; gap: 6px;
-}
-.btn-primary:hover { background: #4f46e5; transform: translateY(-1px); }
-.btn-outline {
-  border: 1px solid #e2e8f0; color: #374151; text-decoration: none;
-  padding: 11px 22px; border-radius: 10px; font-size: 14px; font-weight: 500;
-  transition: border-color 0.15s, background 0.15s; display: inline-flex; align-items: center; gap: 6px;
-}
-.btn-outline:hover { border-color: #c7d2fe; background: #f5f7ff; color: #4f46e5; }
-
-/* HERO DASHBOARD */
-.hero-right {}
-.db-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(99,102,241,0.08), 0 1px 4px rgba(0,0,0,0.04);
-  padding: 24px; overflow: hidden;
-}
-.db-head {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid #f1f5f9;
-}
-.db-head-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6366f1; font-weight: 500; letter-spacing: 0.06em; }
-.db-live { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #16a34a; background: #dcfce7; border: 1px solid #bbf7d0; padding: 3px 10px; border-radius: 4px; display: flex; align-items: center; gap: 5px; }
-.db-live::before { content:''; width:5px; height:5px; border-radius:50%; background:#16a34a; }
-.db-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
-.db-metric {
-  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 14px;
-}
-.db-metric-label { font-size: 11px; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-.db-metric-val { font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700; color: #0f172a; line-height: 1; margin-bottom: 4px; }
-.db-metric-delta { font-size: 11px; color: #16a34a; font-weight: 500; }
-.db-metric-delta.blue { color: #6366f1; }
-.db-sigs { margin-bottom: 18px; }
-.db-sigs-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; font-weight: 500; }
-.db-sig-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.db-sig { font-family: 'JetBrains Mono', monospace; font-size: 11px; padding: 4px 10px; border-radius: 4px; background: #eef2ff; border: 1px solid #c7d2fe; color: #4f46e5; }
-.db-clusters { display: flex; flex-direction: column; gap: 6px; }
-.db-cluster { display: flex; justify-content: space-between; align-items: center; padding: 9px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #f1f5f9; font-size: 13px; }
-.db-cluster-name { color: #374151; font-weight: 500; }
-.st-stable { color: #16a34a; font-size: 11px; font-weight: 600; }
-.st-degraded { color: #dc2626; font-size: 11px; font-weight: 600; }
-.st-optimizing { color: #d97706; font-size: 11px; font-weight: 600; }
-.db-footer { display: flex; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid #f1f5f9; font-size: 11px; color: #94a3b8; }
-.db-footer span { color: #6366f1; font-weight: 600; }
-
-/* SECTIONS */
-section { padding: 88px 5vw; }
-section:nth-child(even) { background: #fafbff; }
-.sec-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6366f1; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 8px; }
-.sec-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.7rem, 2.8vw, 2.3rem); font-weight: 700; color: #0f172a; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 14px; }
-.sec-desc { font-size: 15px; color: #64748b; max-width: 560px; line-height: 1.8; margin-bottom: 44px; }
-
-/* TABS */
-.tabs { display: flex; gap: 4px; margin-bottom: 32px; flex-wrap: wrap; background: #f1f5f9; padding: 4px; border-radius: 10px; width: fit-content; }
-.tab {
-  font-size: 13px; font-weight: 500; color: #64748b;
-  padding: 8px 16px; border-radius: 7px; border: none; background: none; cursor: pointer;
-  transition: all 0.2s; outline: none;
-}
-.tab.active { background: #fff; color: #4f46e5; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-.tab:hover:not(.active) { color: #374151; }
-.tab-pane { display: none; animation: fadeUp 0.25s ease; }
-.tab-pane.active { display: block; }
-@keyframes fadeUp { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-
-.scope-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 32px; max-width: 700px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-}
-.scope-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 600; color: #0f172a; margin-bottom: 12px; }
-.scope-card p { font-size: 14px; color: #64748b; line-height: 1.8; margin-bottom: 14px; }
-.scope-card p:last-child { margin-bottom: 0; }
-
-.solution-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 12px; margin-top: 20px; }
-.sol-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px; }
-.sol-item h4 { font-size: 13px; font-weight: 600; color: #0f172a; margin-bottom: 6px; }
-.sol-item p { font-size: 12px; color: #64748b; line-height: 1.6; }
-
-.tech-wrap { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 16px; }
-.tech-pill { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 5px 14px; background: #eef2ff; border: 1px solid #c7d2fe; color: #4f46e5; border-radius: 6px; }
-
-/* COMPONENTS */
-.comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px,1fr)); gap: 14px; }
-.comp-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 26px;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-}
-.comp-card:hover { border-color: #a5b4fc; box-shadow: 0 6px 24px rgba(99,102,241,0.1); transform: translateY(-2px); }
-.comp-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #a5b4fc; margin-bottom: 12px; font-weight: 500; }
-.comp-title { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0f172a; margin-bottom: 8px; }
-.comp-desc { font-size: 13px; color: #64748b; line-height: 1.7; margin-bottom: 14px; }
-.comp-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.comp-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; background: #eef2ff; border: 1px solid #c7d2fe; color: #6366f1; border-radius: 4px; }
-
-/* MILESTONES — exact live site timeline */
-.ms-timeline { position: relative; padding-left: 0; }
-.ms-timeline::before {
-  content: '';
-  position: absolute;
-  left: 148px;
-  top: 8px; bottom: 8px;
-  width: 1px;
-  background: #e2e8f0;
-}
-.ms-item {
-  display: grid;
-  grid-template-columns: 148px 1fr;
-  gap: 0;
-  position: relative;
-  padding-bottom: 36px;
-}
-.ms-item:last-child { padding-bottom: 0; }
-.ms-left {
-  padding-right: 28px;
-  padding-top: 2px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  position: relative;
-}
-.ms-left::after {
-  content: '';
-  position: absolute;
-  right: -5px; top: 7px;
-  width: 9px; height: 9px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid #c7d2fe;
-  z-index: 1;
-}
-.ms-item.done .ms-left::after { background: #6366f1; border-color: #6366f1; }
-.ms-item.inwork .ms-left::after { background: #fff; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.15); }
-.ms-date { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #94a3b8; font-weight: 500; letter-spacing: 0.08em; text-align: right; }
-.ms-right { padding-left: 28px; }
-.ms-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
-.ms-title { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0f172a; }
-.ms-desc { font-size: 13px; color: #64748b; line-height: 1.65; margin-bottom: 10px; }
-.ms-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-.ms-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #94a3b8; background: #f8fafc; border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 4px; }
-.s-done { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #16a34a; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-.s-done::before { content:''; width:5px; height:5px; border-radius:50%; background:#16a34a; }
-.s-inwork { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #4f46e5; background: #eef2ff; border: 1px solid #c7d2fe; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-.s-inwork::before { content:''; width:5px; height:5px; border-radius:50%; background:#6366f1; animation: blink 2s infinite; }
-.s-planned { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: #94a3b8; background: #f8fafc; border: 1px solid #e2e8f0; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
-.s-planned::before { content:''; width:5px; height:5px; border-radius:50%; background:#cbd5e1; }
-@media(max-width:640px) {
-  .ms-timeline::before { left: 0; }
-  .ms-item { grid-template-columns: 1fr; padding-left: 20px; }
-  .ms-left { align-items: flex-start; padding-right: 0; flex-direction: row; padding-bottom: 6px; }
-  .ms-left::after { left: -16px; right: auto; }
-}
-
-/* DOWNLOADS */
-.dl-pid { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #94a3b8; margin-bottom: 32px; }
-.dl-pid span { color: #6366f1; }
-.dl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px,1fr)); gap: 14px; }
-.dl-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px;
-  display: flex; flex-direction: column; gap: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-.dl-card:hover { border-color: #a5b4fc; box-shadow: 0 4px 20px rgba(99,102,241,0.08); }
-.dl-title { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: #0f172a; }
-.dl-desc { font-size: 13px; color: #64748b; line-height: 1.6; flex: 1; }
-.dl-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; font-weight: 500; color: #6366f1; text-decoration: none;
-  border: 1px solid #c7d2fe; border-radius: 8px; padding: 8px 14px;
-  width: fit-content; background: #eef2ff;
-  transition: background 0.15s, border-color 0.15s;
-}
-.dl-link:hover { background: #e0e7ff; border-color: #a5b4fc; }
-
-/* TEAM */
-.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px,1fr)); gap: 16px; margin-bottom: 44px; }
-.member-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 28px 22px;
-  text-align: center;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.04);
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-}
-.member-card:hover { border-color: #a5b4fc; box-shadow: 0 6px 28px rgba(99,102,241,0.1); transform: translateY(-2px); }
-.member-photo {
-  width: 80px; height: 80px; border-radius: 50%;
-  object-fit: cover; object-position: top;
-  border: 3px solid #e0e7ff;
-  margin: 0 auto 16px; display: block;
-}
-.member-photo-ph {
-  width: 80px; height: 80px; border-radius: 50%;
-  background: #eef2ff; border: 3px solid #c7d2fe;
-  margin: 0 auto 16px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; color: #6366f1;
-}
-.member-name { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 3px; }
-.member-reg { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #94a3b8; margin-bottom: 8px; }
-.member-badge { display: inline-block; font-size: 11px; font-weight: 500; color: #4f46e5; background: #eef2ff; border: 1px solid #c7d2fe; padding: 3px 10px; border-radius: 4px; margin-bottom: 10px; }
-.member-desc { font-size: 12px; color: #64748b; line-height: 1.6; margin-bottom: 14px; }
-.member-socials { display: flex; justify-content: center; gap: 8px; }
-.social-link { font-size: 12px; color: #64748b; text-decoration: none; padding: 4px 10px; border: 1px solid #e2e8f0; border-radius: 6px; transition: color 0.15s, border-color 0.15s, background 0.15s; }
-.social-link:hover { color: #4f46e5; border-color: #c7d2fe; background: #eef2ff; }
-
-.advisors-title { font-size: 14px; color: #374151; font-weight: 600; margin-bottom: 16px; }
-.advisor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 12px; }
-.advisor-card {
-  display: flex; gap: 16px; align-items: center;
-  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px;
-  transition: border-color 0.2s;
-}
-.advisor-card:hover { border-color: #a5b4fc; }
-.advisor-photo { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: top; border: 2px solid #e0e7ff; flex-shrink: 0; }
-.advisor-name { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #0f172a; }
-.advisor-role { font-size: 12px; color: #6366f1; font-weight: 500; margin-top: 2px; }
-.advisor-desc { font-size: 12px; color: #94a3b8; margin-top: 3px; }
-
-/* CONTACT */
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-.contact-form-box {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 32px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-}
-.form-group { margin-bottom: 16px; }
-.form-label { display: block; font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 6px; }
-.form-input, .form-ta {
-  width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 9px;
-  padding: 10px 14px; font-family: 'Inter', sans-serif; font-size: 14px; color: #0f172a;
-  outline: none; resize: none; transition: border-color 0.15s, box-shadow 0.15s;
-}
-.form-input:focus, .form-ta:focus { border-color: #a5b4fc; box-shadow: 0 0 0 3px rgba(99,102,241,0.08); background: #fff; }
-.form-input::placeholder, .form-ta::placeholder { color: #cbd5e1; }
-.form-ta { height: 120px; }
-.form-btn {
-  width: 100%; background: #6366f1; color: #fff; border: none; border-radius: 9px;
-  padding: 12px; font-size: 14px; font-weight: 600; cursor: pointer;
-  font-family: 'Inter', sans-serif; transition: background 0.15s, transform 0.15s;
-}
-.form-btn:hover { background: #4f46e5; transform: translateY(-1px); }
-
-.contact-side {}
-.info-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 26px; margin-bottom: 14px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.03);
-}
-.info-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 14px; }
-.info-row { display: flex; gap: 12px; align-items: flex-start; padding: 9px 0; border-bottom: 1px solid #f8fafc; font-size: 13px; }
-.info-row:last-child { border-bottom: none; padding-bottom: 0; }
-.info-icon { color: #6366f1; flex-shrink: 0; margin-top: 1px; }
-.info-text { color: #64748b; }
-.info-text a { color: #6366f1; text-decoration: none; }
-.info-text a:hover { text-decoration: underline; }
-.info-note { font-size: 12px; color: #94a3b8; font-style: italic; margin-top: 12px; padding-top: 12px; border-top: 1px solid #f1f5f9; }
-.inst-card { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 14px; padding: 22px; }
-.inst-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: #4f46e5; margin-bottom: 8px; }
-.inst-card p { font-size: 13px; color: #6366f1; line-height: 1.7; opacity: 0.8; }
-
-/* FOOTER */
-footer { background: #0f172a; padding: 56px 5vw 36px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 44px; }
-.f-logo { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-.f-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: #6366f1; }
-.f-tagline { font-size: 13px; color: #475569; line-height: 1.7; max-width: 300px; margin-bottom: 16px; }
-.f-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.f-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #334155; border: 1px solid #1e293b; padding: 3px 8px; border-radius: 4px; }
-.f-nav h5 { font-size: 11px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
-.f-nav ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.f-nav a { font-size: 13px; color: #475569; text-decoration: none; transition: color 0.15s; }
-.f-nav a:hover { color: #94a3b8; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid #1e293b; font-size: 12px; color: #334155; }
-.f-pid { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #334155; }
-
-@media(max-width:900px) {
-  .hero-wrap { grid-template-columns: 1fr; }
-  .hero-right { display: none; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-}
-@media(max-width:640px) {
-  .nav-links { display: none; }
-  section { padding: 64px 4vw; }
-  .ms-row { grid-template-columns: 1fr; gap: 6px; }
-  .tabs { width: 100%; }
-}
-</style>
+<link rel="stylesheet" href="kernel_eye_white.css"/>
+<script src="kernel_eye_data.js"></script>
 </head>
 <body>
 
@@ -555,92 +178,21 @@ footer { background: #0f172a; padding: 56px 5vw 36px; }
   <div class="sec-label">Progress</div>
   <div class="sec-title">Project Milestones</div>
   <p class="sec-desc">Key research checkpoints and academic deliverables.</p>
-  <div class="ms-timeline">
-
-    <div class="ms-item done">
-      <div class="ms-left">
-        <span class="ms-date">SEP 2025</span>
-        <span class="s-done">Done</span>
+  <div class="ms-layout">
+    <div class="ms-summary">
+      <div class="ms-summary-card">
+        <div class="ms-summary-title">Milestone overview</div>
+        <div class="ms-summary-text">Milestones are stored in kernel_eye_data.js so the page content can be updated without editing the layout.</div>
+        <div class="ms-summary-list" id="milestone-summary"></div>
       </div>
-      <div class="ms-right">
-        <div class="ms-title">Topic Assessment</div>
-        <div class="ms-desc">Established the core problem statement and validated the initial research direction.</div>
-        <div class="ms-tags"><span class="ms-tag">#research</span><span class="ms-tag">#scope</span></div>
-      </div>
-    </div>
-
-    <div class="ms-item done">
-      <div class="ms-left">
-        <span class="ms-date">OCT 2025</span>
-        <span class="s-done">Done</span>
-      </div>
-      <div class="ms-right">
-        <div class="ms-title">Proposal Presentation</div>
-        <div class="ms-desc">Presented the project scope, motivation, objectives, and proposed solution strategy.</div>
-        <div class="ms-tags"><span class="ms-tag">#proposal</span><span class="ms-tag">#planning</span></div>
+      <div class="inst-card">
+        <h4>Content Source</h4>
+        <p>Edit the data file to add, remove, or reorder milestones without touching the presentation code.</p>
       </div>
     </div>
-
-    <div class="ms-item done">
-      <div class="ms-left">
-        <span class="ms-date">DEC 2025</span>
-        <span class="s-done">Done</span>
-      </div>
-      <div class="ms-right">
-        <div class="ms-title">Progress Presentation 1</div>
-        <div class="ms-desc">Reviewed the initial system design, architecture decisions, and module-level direction.</div>
-        <div class="ms-tags"><span class="ms-tag">#design</span><span class="ms-tag">#architecture</span></div>
-      </div>
+    <div class="ms-board">
+      <div class="ms-grid" id="milestone-grid"></div>
     </div>
-
-    <div class="ms-item done">
-      <div class="ms-left">
-        <span class="ms-date">MAR 2026</span>
-        <span class="s-done">Done</span>
-      </div>
-      <div class="ms-right">
-        <div class="ms-title">Progress Presentation 2</div>
-        <div class="ms-desc">Demonstrated implementation progress with focused validation of key components.</div>
-        <div class="ms-tags"><span class="ms-tag">#implementation</span><span class="ms-tag">#validation</span></div>
-      </div>
-    </div>
-
-    <div class="ms-item done">
-      <div class="ms-left">
-        <span class="ms-date">MAR 2026</span>
-        <span class="s-done">Done</span>
-      </div>
-      <div class="ms-right">
-        <div class="ms-title">Research Paper</div>
-        <div class="ms-desc">Developed the research manuscript with technical analysis and publication-ready documentation.</div>
-        <div class="ms-tags"><span class="ms-tag">#paper</span><span class="ms-tag">#publication</span></div>
-      </div>
-    </div>
-
-    <div class="ms-item inwork">
-      <div class="ms-left">
-        <span class="ms-date">MAR 2026</span>
-        <span class="s-inwork">In Work</span>
-      </div>
-      <div class="ms-right">
-        <div class="ms-title">Final Report</div>
-        <div class="ms-desc">Compiling the complete project report, including implementation details and evaluation outcomes.</div>
-        <div class="ms-tags"><span class="ms-tag">#report</span><span class="ms-tag">#evaluation</span></div>
-      </div>
-    </div>
-
-    <div class="ms-item">
-      <div class="ms-left">
-        <span class="ms-date">APR 2026</span>
-        <span class="s-planned">Planned</span>
-      </div>
-      <div class="ms-right">
-        <div class="ms-title">Final Presentation / Viva</div>
-        <div class="ms-desc">Preparing for the final defense with a comprehensive demonstration of research outcomes.</div>
-        <div class="ms-tags"><span class="ms-tag">#defense</span><span class="ms-tag">#demo</span></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -773,6 +325,54 @@ function showTab(id, el) {
   document.getElementById('tab-' + id).classList.add('active');
   el.classList.add('active');
 }
+
+function renderMilestones() {
+  const data = (window.KernelEyeData && window.KernelEyeData.milestones) || [];
+  const grid = document.getElementById('milestone-grid');
+  const summary = document.getElementById('milestone-summary');
+
+  if (!grid || !summary || !data.length) {
+    return;
+  }
+
+  const counts = data.reduce((accumulator, item) => {
+    accumulator.total += 1;
+    accumulator[item.status] = (accumulator[item.status] || 0) + 1;
+    return accumulator;
+  }, { total: 0, done: 0, inwork: 0, planned: 0 });
+
+  const currentItem = data.find(item => item.status !== 'done') || data[data.length - 1];
+  const statusLabel = {
+    done: 'Done',
+    inwork: 'In Work',
+    planned: 'Planned'
+  };
+
+  summary.innerHTML = [
+    '<div class="ms-summary-item"><span><strong>' + counts.total + '</strong> tracked</span><span class="ms-summary-meta">Milestones</span></div>',
+    '<div class="ms-summary-item"><span><strong>' + counts.done + '</strong> completed</span><span class="ms-summary-meta">Delivered</span></div>',
+    '<div class="ms-summary-item"><span><strong>' + (counts.inwork + counts.planned) + '</strong> open</span><span class="ms-summary-meta">Remaining</span></div>',
+    '<div class="ms-summary-item"><span><strong>' + currentItem.title + '</strong><br>' + currentItem.date + '</span><span class="ms-summary-meta">' + statusLabel[currentItem.status] + '</span></div>'
+  ].join('');
+
+  grid.innerHTML = data.map(item => {
+    const tags = item.tags.map(tag => '<span class="ms-tag">' + tag + '</span>').join('');
+    return [
+      '<article class="ms-card ' + item.status + '">',
+      '  <div class="ms-card-head">',
+      '    <div>',
+      '      <div class="ms-card-date">' + item.date + '</div>',
+      '      <div class="ms-card-title">' + item.title + '</div>',
+      '    </div>',
+      '    <span class="' + (item.status === 'done' ? 's-done' : item.status === 'inwork' ? 's-inwork' : 's-planned') + '">' + statusLabel[item.status] + '</span>',
+      '  </div>',
+      '  <div class="ms-card-desc">' + item.description + '</div>',
+      '  <div class="ms-tags">' + tags + '</div>',
+      '</article>'
+    ].join('\n');
+  }).join('');
+}
+
 const sections = document.querySelectorAll('section[id]');
 const navAs = document.querySelectorAll('.nav-links a');
 window.addEventListener('scroll', () => {
@@ -786,6 +386,12 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderMilestones);
+} else {
+  renderMilestones();
+}
 </script>
 </body>
 </html>
