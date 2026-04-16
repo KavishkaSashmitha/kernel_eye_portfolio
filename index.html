@@ -35,6 +35,20 @@
         <a href="#scope" class="btn-primary">View Research</a>
         <a href="#scope" class="btn-outline">Explore Project</a>
       </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span>Focus</span>
+          <strong>eBPF telemetry</strong>
+        </div>
+        <div class="hero-stat">
+          <span>Model</span>
+          <strong>Sidecar-less orchestration</strong>
+        </div>
+        <div class="hero-stat">
+          <span>Goal</span>
+          <strong>Adaptive Kubernetes</strong>
+        </div>
+      </div>
     </div>
     <div class="hero-right">
       <div class="db-card">
@@ -79,9 +93,9 @@
 
 <!-- SCOPE -->
 <section id="scope">
-  <div class="sec-label">Project Scope</div>
-  <div class="sec-title">What is KernelEye?</div>
-  <p class="sec-desc">KernelEye investigates how kernel-level telemetry collected through eBPF can be used to support lower-overhead and more adaptive Kubernetes orchestration.</p>
+  <div class="sec-label section-center">Project Scope</div>
+  <div class="sec-title section-center">What is KernelEye?</div>
+  <p class="sec-desc section-center section-desc-wide">KernelEye investigates how kernel-level telemetry collected through eBPF can be used to support lower-overhead and more adaptive Kubernetes orchestration.</p>
 
   <div class="tabs">
     <button class="tab active" onclick="showTab('overview',this)">Overview</button>
@@ -140,10 +154,10 @@
     </div>
   </div>
 
-  <div style="margin-top:64px;">
+  <div class="components-block">
     <div class="sec-label">Core Research Components</div>
-    <div class="sec-title" style="margin-bottom:6px;">Four system elements for telemetry-driven orchestration.</div>
-    <p style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#94a3b8;margin-bottom:32px;">Focus: <span style="color:#6366f1;">Sidecar-less orchestration</span></p>
+    <div class="sec-title components-title">Four system elements for telemetry-driven orchestration.</div>
+    <p class="component-focus">Focus: <span>Sidecar-less orchestration</span></p>
     <div class="comp-grid">
       <div class="comp-card">
         <div class="comp-num">01 · eBPF Telemetry Layer</div>
@@ -175,17 +189,17 @@
 
 <!-- MILESTONES -->
 <section id="milestones">
-  <div class="sec-label" style="text-align:center;">Progress</div>
-  <div class="sec-title" style="text-align:center;">Project Milestones</div>
-  <p class="sec-desc" style="text-align:center;max-width:100%;">Key research checkpoints and academic deliverables.</p>
+  <div class="sec-label section-center">Progress</div>
+  <div class="sec-title section-center">Project Milestones</div>
+  <p class="sec-desc section-center section-desc-wide">Key research checkpoints and academic deliverables.</p>
   <div class="ms-timeline" id="milestone-grid"></div>
 </section>
 
 <!-- DOWNLOADS -->
 <section id="downloads">
-  <div class="sec-label">Research Resources</div>
-  <div class="sec-title">Access the latest project documents and deliverables.</div>
-  <div class="dl-pid"><span>Project ID: </span>25-26J-434</div>
+  <div class="sec-label section-center">Research Resources</div>
+  <div class="sec-title section-center">Access the latest project documents and deliverables.</div>
+  <div class="dl-pid section-center"><span>Project ID: </span>25-26J-434</div>
   <div class="dl-grid">
     <div class="dl-card">
       <div class="dl-icon"><svg width="22" height="22" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
@@ -222,8 +236,8 @@
 
 <!-- TEAM -->
 <section id="team">
-  <div class="sec-label">The Team</div>
-  <div class="sec-title">A compact research team focused on kernel telemetry, orchestration logic, and distributed coordination.</div>
+  <div class="sec-label section-center">The Team</div>
+  <div class="sec-title section-center">A compact research team focused on kernel telemetry, orchestration logic, and distributed coordination.</div>
   <div class="team-grid">
     <div class="member-card">
       <div class="member-photo-ph">GD</div>
@@ -320,7 +334,14 @@
         <li><a href="#team">Team</a></li><li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <div class="f-nav"><h5>Connect</h5></div>
+    <div class="f-nav">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:kernel-eye@research.edu">kernel-eye@research.edu</a></li>
+        <li><a href="#downloads">Project deliverables</a></li>
+        <li><a href="#contact">Contact form</a></li>
+      </ul>
+    </div>
   </div>
   <div class="footer-bottom">
     <div>© 2026 KernelEye Research Project.</div>
@@ -374,11 +395,8 @@ window.addEventListener('scroll', () => {
   let cur = '';
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
   navAs.forEach(a => {
-    const active = a.getAttribute('href') === '#' + cur;
-    if (!a.classList.contains('nav-cta')) {
-      a.style.color = active ? '#4f46e5' : '';
-      a.style.background = active ? '#eef2ff' : '';
-    }
+    if (a.classList.contains('nav-cta')) return;
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
   });
 });
 
