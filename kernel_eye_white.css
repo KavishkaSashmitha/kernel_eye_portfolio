@@ -646,6 +646,9 @@ section > .ms-timeline {
 
 .tab-pane {
   display: none;
+  width: min(100%, var(--container));
+  margin-left: auto;
+  margin-right: auto;
   animation: fadeUp 0.24s ease;
 }
 
@@ -659,8 +662,10 @@ section > .ms-timeline {
 }
 
 .scope-card {
-  max-width: 760px;
-  padding: 30px;
+  width: min(100%, 920px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 32px;
 }
 
 .scope-card h3,
