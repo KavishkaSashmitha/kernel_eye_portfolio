@@ -30,12 +30,7 @@ const downloadItems = [
 
       <!-- Logo -->
       <a href="#home" class="flex items-center gap-2 group flex-shrink-0">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center shadow-lg shadow-sky-500/30 group-hover:shadow-sky-500/50 transition-shadow">
-          <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-          </svg>
-        </div>
+        <img src="/favicon.svg" alt="KernelEye" class="w-8 h-8 rounded-lg shadow-lg shadow-sky-500/30 group-hover:shadow-sky-500/50 transition-shadow" />
         <span class="text-lg font-bold font-heading bg-gradient-to-r from-sky-300 to-blue-400 bg-clip-text text-transparent tracking-tight">
           KernelEye
         </span>
@@ -74,7 +69,7 @@ const downloadItems = [
           <!-- Dropdown Panel -->
           <div
             id="downloads-menu"
-            class="absolute top-full right-0 mt-2 w-56 rounded-xl border border-white/10 shadow-2xl shadow-black/50 overflow-hidden opacity-0 scale-95 pointer-events-none transition-all duration-200 origin-top-right"
+            class="downloads-menu absolute top-full right-0 mt-2 w-56 rounded-xl border border-white/10 shadow-2xl shadow-black/50 overflow-hidden opacity-0 scale-95 pointer-events-none transition-all duration-200 origin-top-right"
             style="background: rgba(15,15,20,0.95); backdrop-filter: blur(24px);"
           >
             <div class="p-1.5">
@@ -90,9 +85,6 @@ const downloadItems = [
                   </div>
                 </a>
               ))}
-            </div>
-            <div class="border-t border-white/5 px-4 py-2.5">
-              <p class="text-xs text-slate-600">KernelEye Research · 2024</p>
             </div>
           </div>
         </div>
