@@ -1,0 +1,68 @@
+---
+const achievements = [
+  {
+    title: "International Conference Recognition",
+    period: "May 2026",
+    description:
+      "KernelEye was selected as a research contribution in a cloud-native systems track, validating the sidecar-less telemetry direction.",
+    tags: ["Publication", "Cloud-Native", "Telemetry"],
+  },
+  {
+    title: "SLIIT Innovation Showcase",
+    period: "Apr 2026",
+    description:
+      "Live demonstration of runtime-aware Kubernetes orchestration with adaptive routing and kernel-signal observability.",
+    tags: ["Demo", "Runtime Awareness", "eBPF"],
+  },
+  {
+    title: "Research Competition Submission",
+    period: "Mar 2026",
+    description:
+      "Submitted a complete technical package including architecture, implementation, and evaluation outcomes.",
+    tags: ["Evaluation", "Architecture", "Submission"],
+  },
+];
+---
+
+<section id="achievements" class="py-16 relative bg-zinc-900/30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 reveal">
+      <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
+        Research Achievement
+      </h2>
+      <p class="text-slate-400 mt-3 max-w-2xl mx-auto">
+        Key recognition, research outputs, and public presentations from the KernelEye journey.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
+      {achievements.map((item) => (
+        <article class="glass-soft card-hover rounded-2xl p-5 border border-white/10 reveal">
+          <div class="flex items-center justify-between gap-3 mb-3">
+            <h3 class="text-base font-semibold text-white leading-snug">{item.title}</h3>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 whitespace-nowrap">
+              {item.period}
+            </span>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed mb-4">{item.description}</p>
+          <div class="flex flex-wrap gap-1.5">
+            {item.tags.map((tag) => (
+              <span class="text-xs px-2.5 py-0.5 rounded-full border border-sky-400/25 bg-sky-500/10 text-sky-200 font-medium">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="glass-soft rounded-2xl border border-white/10 p-5 reveal">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Field Demo</div>
+        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Cluster Testing</div>
+        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Lab Validation</div>
+        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Team Showcase</div>
+      </div>
+    </div>
+  </div>
+</section>
