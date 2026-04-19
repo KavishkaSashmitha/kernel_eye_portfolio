@@ -1,27 +1,4 @@
 ---
-const achievements = [
-  {
-    title: "International Conference Recognition",
-    period: "May 2026",
-    description:
-      "KernelEye was selected as a research contribution in a cloud-native systems track, validating the sidecar-less telemetry direction.",
-    tags: ["Publication", "Cloud-Native", "Telemetry"],
-  },
-  {
-    title: "SLIIT Innovation Showcase",
-    period: "Apr 2026",
-    description:
-      "Live demonstration of runtime-aware Kubernetes orchestration with adaptive routing and kernel-signal observability.",
-    tags: ["Demo", "Runtime Awareness", "eBPF"],
-  },
-  {
-    title: "Research Competition Submission",
-    period: "Mar 2026",
-    description:
-      "Submitted a complete technical package including architecture, implementation, and evaluation outcomes.",
-    tags: ["Evaluation", "Architecture", "Submission"],
-  },
-];
 ---
 
 <section id="achievements" class="py-16 relative bg-zinc-900/30">
@@ -35,33 +12,45 @@ const achievements = [
       </p>
     </div>
 
+    <!-- Coming Soon Banner -->
+    <div class="glass-soft rounded-2xl border border-white/10 p-10 reveal flex flex-col items-center justify-center text-center mb-8">
+      <div class="w-14 h-14 rounded-full bg-sky-500/10 border border-sky-400/25 flex items-center justify-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-semibold text-white mb-2">Coming Soon</h3>
+      <p class="text-sm text-slate-400 max-w-md">Research achievements and recognition milestones will be published here once the work is formally presented and validated.</p>
+    </div>
+
+    <!-- Skeleton Cards -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
-      {achievements.map((item) => (
-        <article class="glass-soft card-hover rounded-2xl p-5 border border-white/10 reveal">
+      {[0, 1, 2].map(() => (
+        <div class="glass-soft rounded-2xl p-5 border border-white/10 animate-pulse">
           <div class="flex items-center justify-between gap-3 mb-3">
-            <h3 class="text-base font-semibold text-white leading-snug">{item.title}</h3>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 whitespace-nowrap">
-              {item.period}
-            </span>
+            <div class="h-4 bg-white/10 rounded-full w-2/3"></div>
+            <div class="h-4 bg-white/10 rounded-full w-16"></div>
           </div>
-          <p class="text-sm text-slate-400 leading-relaxed mb-4">{item.description}</p>
-          <div class="flex flex-wrap gap-1.5">
-            {item.tags.map((tag) => (
-              <span class="text-xs px-2.5 py-0.5 rounded-full border border-sky-400/25 bg-sky-500/10 text-sky-200 font-medium">
-                {tag}
-              </span>
-            ))}
+          <div class="space-y-2 mb-4">
+            <div class="h-3 bg-white/10 rounded-full w-full"></div>
+            <div class="h-3 bg-white/10 rounded-full w-5/6"></div>
+            <div class="h-3 bg-white/10 rounded-full w-4/6"></div>
           </div>
-        </article>
+          <div class="flex gap-1.5">
+            <div class="h-5 bg-white/10 rounded-full w-16"></div>
+            <div class="h-5 bg-white/10 rounded-full w-20"></div>
+            <div class="h-5 bg-white/10 rounded-full w-14"></div>
+          </div>
+        </div>
       ))}
     </div>
 
-    <div class="glass-soft rounded-2xl border border-white/10 p-5 reveal">
+    <!-- Skeleton Grid -->
+    <div class="glass-soft rounded-2xl border border-white/10 p-5 reveal animate-pulse">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Field Demo</div>
-        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Cluster Testing</div>
-        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Lab Validation</div>
-        <div class="rounded-xl bg-white/5 border border-white/10 h-24 flex items-center justify-center text-xs text-slate-400">Team Showcase</div>
+        {[0, 1, 2, 3].map(() => (
+          <div class="rounded-xl bg-white/5 border border-white/10 h-24"></div>
+        ))}
       </div>
     </div>
   </div>
