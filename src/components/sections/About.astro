@@ -1,88 +1,120 @@
 ---
 const scopeTabs = [
   {
-    id: "overview",
-    title: "Overview",
-    subtitle: "Project summary",
-    body:
-      "KernelEye investigates how kernel-level telemetry collected through eBPF can be used to support lower-overhead and more adaptive Kubernetes orchestration compared to traditional sidecar-heavy approaches."
+    id: "literature",
+    title: "Literature Survey",
+    subtitle: "What the literature shows",
+    body: "Existing Kubernetes systems use service meshes and monitoring tools to manage microservices, but they rely heavily on sidecar proxies and high-level metrics like CPU and memory. While tools like eBPF enable low-level observability, their integration into orchestration for real-time decision-making is still limited.",
+  },
+  {
+    id: "gap",
+    title: "Research Gap",
+    subtitle: "What is missing today",
+    body: "Current solutions introduce performance overhead through sidecars and lack the use of kernel-level telemetry for intelligent orchestration. There is no lightweight approach that combines real-time telemetry with routing, scaling, and scheduling decisions.",
   },
   {
     id: "problem",
     title: "Research Problem",
-    subtitle: "Why this matters",
-    body:
-      "Existing service mesh approaches improve traffic control and observability, but often introduce extra resource usage, startup delay, and management complexity. KernelEye explores a lightweight alternative using kernel-level telemetry to support more efficient orchestration."
-  },
-  {
-    id: "runtime",
-    title: "Runtime Awareness",
-    subtitle: "Adaptive orchestration",
-    body:
-      "The project is designed around runtime awareness, enabling orchestration logic to respond to real system and network conditions rather than relying only on conventional metrics."
+    subtitle: "The core challenge",
+    body: "Traditional Kubernetes architectures reduce efficiency due to sidecar overhead and limited observability. The challenge is to design a system that improves performance using real-time telemetry while minimizing resource usage and complexity.",
   },
   {
     id: "objectives",
-    title: "Objectives",
-    subtitle: "Research direction",
-    body:
-      "Develop a sidecar-less orchestration approach that combines telemetry collection, intelligent routing, runtime-aware scaling, and distributed coordination within Kubernetes."
+    title: "Research Objectives",
+    subtitle: "What the project aims to achieve",
+    body: "The project aims to develop a sidecar-less orchestration system that uses eBPF telemetry to enable intelligent traffic routing, autoscaling, and scheduling while improving system performance and scalability.",
   },
   {
-    id: "technology",
-    title: "Technologies",
-    subtitle: "Core stack",
-    body:
-      "eBPF for kernel-level telemetry, Kubernetes (with DaemonSet, Scale and Binding APIs) for orchestration, Go for the node-level daemon and its Service Provider Interface, and WebSocket-based peer-to-peer messaging for decentralized, runtime-aware decision making"
-  }
+    id: "methodology",
+    title: "Methodology",
+    subtitle: "How the system works",
+    body: "The system collects kernel-level telemetry using eBPF, processes it through a unified interface, and uses it to make real-time decisions for routing, scaling, and scheduling. A distributed coordination layer ensures cluster-wide communication and optimization.",
+  },
 ];
 ---
 
 <section id="scope" class="py-16 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 reveal">
+    <div
+      class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 reveal"
+    >
       <div>
-        <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
-          Project Scope
+        <h2
+          class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white"
+        >
+          Research Domain
         </h2>
         <p class="text-slate-400 mt-4 max-w-2xl">
-          KernelEye investigates how kernel-level telemetry collected through eBPF can be used to support lower-overhead and more adaptive Kubernetes orchestration compared to traditional sidecar-heavy approaches.
+          The domain section captures the literature survey, research gap,
+          research problem, research objectives, methodology, and the technology
+          base used for KernelEye.
         </p>
       </div>
     </div>
 
     <div class="space-y-6">
-      <div class="flex flex-wrap gap-3 justify-center lg:justify-start reveal" data-scope-tabs>
-        {scopeTabs.map((tab, index) => (
-          <button
-            class={`focus-ring rounded-full px-4 py-2 text-sm font-medium border transition whitespace-nowrap ${
-              index === 0
-                ? "bg-white/10 text-white border-white/20"
-                : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
-            }`}
-            data-tab={tab.id}
-            aria-selected={index === 0 ? "true" : "false"}
-            type="button"
-          >
-            {tab.title}
-          </button>
-        ))}
+      <div
+        class="flex flex-wrap gap-3 justify-center lg:justify-start reveal"
+        data-scope-tabs
+      >
+        {
+          scopeTabs.map((tab, index) => (
+            <button
+              class={`focus-ring rounded-full px-4 py-2 text-sm font-medium border transition whitespace-nowrap ${
+                index === 0
+                  ? "bg-white/10 text-white border-white/20"
+                  : "bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:bg-white/10"
+              }`}
+              data-tab={tab.id}
+              aria-selected={index === 0 ? "true" : "false"}
+              type="button"
+            >
+              {tab.title}
+            </button>
+          ))
+        }
       </div>
 
-      <div class="glass-soft card-hover rounded-3xl p-8 border border-white/10 reveal" data-scope-card>
+      <div
+        class="glass-soft card-hover rounded-3xl p-8 border border-white/10 reveal"
+        data-scope-card
+      >
         <div class="flex items-center gap-3 mb-4">
-          <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-sky-200">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 5v14m0 0l5-5m-5 5l-5-5" />
+          <span
+            class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-sky-200"
+          >
+            <svg
+              class="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.6"
+                d="M12 5v14m0 0l5-5m-5 5l-5-5"></path>
             </svg>
           </span>
           <div>
-            <p class="text-xs uppercase tracking-[0.2em] text-slate-500" data-scope-subtitle>Project summary</p>
-            <h3 class="text-xl font-semibold text-white" data-scope-title>Overview</h3>
+            <p
+              class="text-xs uppercase tracking-[0.2em] text-slate-500"
+              data-scope-subtitle
+            >
+              What the literature shows
+            </p>
+            <h3 class="text-xl font-semibold text-white" data-scope-title>
+              Literature Survey
+            </h3>
           </div>
         </div>
         <p class="text-slate-400 leading-relaxed" data-scope-body>
-          KernelEye investigates how kernel-level telemetry collected through eBPF can be used to support lower-overhead and more adaptive Kubernetes orchestration compared to traditional sidecar-heavy approaches.
+          Existing Kubernetes systems use service meshes and monitoring tools to
+          manage microservices, but they rely heavily on sidecar proxies and
+          high-level metrics like CPU and memory. While tools like eBPF enable
+          low-level observability, their integration into orchestration for
+          real-time decision-making is still limited.
         </p>
       </div>
     </div>
@@ -96,9 +128,7 @@ const scopeTabs = [
   const bodyEl = document.querySelector("[data-scope-body]");
 
   if (tabsRoot && titleEl && subtitleEl && bodyEl) {
-    const tabs = Array.from(
-      tabsRoot.querySelectorAll("button[data-tab]"),
-    );
+    const tabs = Array.from(tabsRoot.querySelectorAll("button[data-tab]"));
     const data = scopeTabs;
 
     const setActive = (id) => {

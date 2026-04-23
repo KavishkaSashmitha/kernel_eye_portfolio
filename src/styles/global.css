@@ -108,6 +108,41 @@ section {
   color: #94a3b8;
   border-color: rgba(148, 163, 184, 0.2);
 }
+.badge-signal {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.badge-signal-cyan {
+  background: rgba(34, 211, 238, 0.15);
+  color: #a5f3fc;
+  border-color: rgba(34, 211, 238, 0.28);
+}
+
+.badge-signal-blue {
+  background: rgba(96, 165, 250, 0.16);
+  color: #bfdbfe;
+  border-color: rgba(96, 165, 250, 0.28);
+}
+
+.badge-signal-emerald {
+  background: rgba(52, 211, 153, 0.16);
+  color: #a7f3d0;
+  border-color: rgba(52, 211, 153, 0.28);
+}
+
+.badge-signal-amber {
+  background: rgba(251, 191, 36, 0.16);
+  color: #fde68a;
+  border-color: rgba(251, 191, 36, 0.28);
+}
 html[data-theme="light"] .badge-completed {
   background: #dcfce7;
   color: #15803d;
@@ -117,6 +152,30 @@ html[data-theme="light"] .badge-ongoing {
   background: #fef9c3;
   color: #a16207;
   border-color: #fde047;
+}
+
+html[data-theme="light"] .badge-signal-cyan {
+  background: rgba(14, 165, 233, 0.1);
+  color: #0369a1;
+  border-color: rgba(14, 165, 233, 0.18);
+}
+
+html[data-theme="light"] .badge-signal-blue {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+  border-color: rgba(59, 130, 246, 0.18);
+}
+
+html[data-theme="light"] .badge-signal-emerald {
+  background: rgba(16, 185, 129, 0.1);
+  color: #047857;
+  border-color: rgba(16, 185, 129, 0.18);
+}
+
+html[data-theme="light"] .badge-signal-amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+  border-color: rgba(245, 158, 11, 0.2);
 }
 html[data-theme="light"] .badge-upcoming {
   background: #f1f5f9;
