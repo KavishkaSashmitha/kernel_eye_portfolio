@@ -1,8 +1,47 @@
 ---
+import { extname } from "node:path";
+import { readdirSync } from "node:fs";
 
+const architectureDir = new URL(
+  "../../../public/images/architecture",
+  import.meta.url,
+);
+const supportedImageExtensions = new Set([
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".webp",
+  ".svg",
+  ".gif",
+]);
+
+const toTitle = (fileName: string) =>
+  fileName
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+
+const diagrams = readdirSync(architectureDir)
+  .filter((fileName) =>
+    supportedImageExtensions.has(extname(fileName).toLowerCase()),
+  )
+  .sort((a, b) => a.localeCompare(b))
+  .map((fileName) => ({
+    src: `/images/architecture/${encodeURIComponent(fileName)}`,
+    title: toTitle(fileName),
+    fileName,
+  }));
+
+const logicalViewDiagrams = diagrams.filter((diagram) =>
+  diagram.fileName.toLowerCase().includes("logical"),
+);
+
+const systemViewDiagrams = diagrams.filter(
+  (diagram) => !diagram.fileName.toLowerCase().includes("logical"),
+);
 ---
 
-<section id="architecture" class="py-16 relative">
+<section id="architecture" class="py-12 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div
       class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 reveal"
@@ -18,47 +57,110 @@
         >
           System Architecture
         </h2>
-        <p class="text-slate-400 mt-4 max-w-2xl">
-          Placeholder for the final architecture diagram. This area will later
-          show the end-to-end flow between telemetry collection, processing,
-          orchestration, and coordination components.
-        </p>
       </div>
     </div>
 
-    <div
-      class="glass-soft rounded-3xl border border-dashed border-white/15 p-6 sm:p-10 reveal"
-    >
-      <div
-        class="min-h-70 rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.14),transparent_55%),linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] flex flex-col items-center justify-center text-center px-6"
-      >
-        <div
-          class="w-16 h-16 rounded-2xl bg-sky-500/10 border border-sky-400/20 flex items-center justify-center mb-5"
-        >
-          <svg
-            class="w-8 h-8 text-sky-300"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.8"
-              d="M4 6h6v6H4V6zm10 0h6v6h-6V6zM4 16h6v2H4v-2zm10-4h6v6h-6v-6z"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold text-white">
-          Architecture diagram placeholder
-        </h3>
-        <p class="text-sm text-slate-400 mt-3 max-w-xl leading-relaxed">
-          The finalized diagram can be inserted here later. It should illustrate
-          the telemetry pipeline, orchestration logic, and the communication
-          path between cluster nodes.
-        </p>
-      </div>
+    <div class="glass-soft rounded-3xl border border-white/10 overflow-hidden reveal">
+      {
+        diagrams.length > 0 ? (
+          <div class="flex flex-col lg:flex-row">
+            <!-- Left: description text -->
+            <div class="lg:w-[38%] shrink-0 flex flex-col gap-6 p-6 sm:p-8 lg:border-r border-b lg:border-b-0 border-white/10">
+              <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-md bg-sky-500/20 border border-sky-500/30 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+                    </svg>
+                  </div>
+                  <span class="text-sky-300 text-xs font-semibold uppercase tracking-widest">
+                    Kernel-Level Telemetry
+                  </span>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  Architecture integrates kernel-level telemetry collection using{" "}
+                  <span class="text-sky-300 font-medium">eBPF</span>, enabling
+                  low-overhead, high-fidelity visibility into system and network
+                  operations. This eliminates the need for intrusive
+                  application-level instrumentation and reduces resource
+                  consumption compared to conventional observability tools.
+                </p>
+              </div>
+
+              <div class="w-full h-px bg-white/8" />
+
+              <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-md bg-violet-500/20 border border-violet-500/30 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <span class="text-violet-300 text-xs font-semibold uppercase tracking-widest">
+                    Intelligent Orchestration
+                  </span>
+                </div>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                  The collected telemetry is processed by an{" "}
+                  <span class="text-violet-300 font-medium">
+                    intelligent decision engine
+                  </span>
+                  , which analyzes runtime conditions such as latency, packet
+                  loss, and resource utilization. Based on these insights, the
+                  system dynamically adjusts traffic routing and workload
+                  placement through an intent-aware orchestration layer,
+                  ensuring optimal service performance and efficient resource
+                  usage.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right: diagrams -->
+            <div class="flex-1 p-4 sm:p-5">
+              <div class="grid grid-cols-1 gap-3 h-full">
+                {systemViewDiagrams.map((diagram) => (
+                  <figure class="rounded-xl overflow-hidden border border-white/10 flex flex-col group">
+                    <div class="flex-1 overflow-hidden">
+                      <img
+                        src={diagram.src}
+                        alt={`Architecture diagram: ${diagram.title}`}
+                        loading="lazy"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <figcaption class="px-3 py-2 text-xs text-slate-400 text-center border-t border-white/10 shrink-0">
+                      System View
+                    </figcaption>
+                  </figure>
+                ))}
+                {logicalViewDiagrams.map((diagram) => (
+                  <figure class="rounded-xl overflow-hidden border border-white/10 flex flex-col group">
+                    <div class="flex-1 overflow-hidden">
+                      <img
+                        src={diagram.src}
+                        alt={`Logical architecture diagram: ${diagram.title}`}
+                        loading="lazy"
+                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <figcaption class="px-3 py-2 text-xs text-slate-400 text-center border-t border-white/10 shrink-0">
+                      Logical View
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div class="p-6 rounded-2xl border border-dashed border-white/20 min-h-52 flex items-center justify-center text-center px-6">
+            <p class="text-slate-400 text-sm max-w-xl">
+              No architecture diagrams found in
+              <span class="text-slate-200"> public/images/architecture </span>.
+              Add image files there and refresh the page.
+            </p>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>
