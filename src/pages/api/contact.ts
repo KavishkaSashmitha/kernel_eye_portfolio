@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 const MAX_FIELD_LENGTH = {
   name: 120,
@@ -19,19 +19,13 @@ const sanitize = (value: unknown, maxLen: number): string => {
   return value.trim().slice(0, maxLen);
 };
 
-// Initialize Nodemailer transporter for Gmail
-const createTransporter = () => {
-  return nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: import.meta.env.GMAIL_USER,
-      pass: import.meta.env.GMAIL_APP_PASSWORD,
-    },
-  });
-};
-
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+  const resendApiKey = import.meta.env.RESEND_API_KEY;
   const recipientEmail = import.meta.env.RECIPIENT_EMAIL || 'kerneleye4u@gmail.com';
+
+  if (!resendApiKey) {
+    return json({ error: 'Server configuration is missing.' }, 500);
+  }
 
   const contentType = request.headers.get('content-type') || '';
   if (!contentType.includes('application/json')) {
@@ -59,9 +53,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Please provide a valid email address.' }, 400);
   }
 
-  // Send email
   try {
-    const transporter = createTransporter();
+    const resend = new Resend(resendApiKey);
+
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #1e293b; margin-bottom: 20px;">New Contact Form Submission</h2>
@@ -69,7 +63,6 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>Subject:</strong> ${subject}</p>
-          <p><strong>IP Address:</strong> ${clientAddress ?? 'N/A'}</p>
         </div>
         <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #0ea5e9;">
           <h3 style="color: #0ea5e9; margin-top: 0;">Message:</h3>
@@ -78,18 +71,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       </div>
     `;
 
-    await transporter.sendMail({
-      from: import.meta.env.GMAIL_USER,
+    await resend.emails.send({
+      from: 'KernelEye <onboarding@resend.dev>',
       to: recipientEmail,
       replyTo: email,
       subject: `[KernelEye] ${subject}`,
       html: htmlContent,
-      text: `New contact submission from ${name} (${email}):\n\nSubject: ${subject}\n\nMessage:\n${message}`,
     });
-  } catch (emailError) {
-    console.error('Email sending failed:', emailError);
+
+    return json({ ok: true, message: 'Message sent successfully.' }, 201);
+  } catch (error) {
+    console.error('Email sending failed:', error);
     return json({ error: 'Failed to send email. Please try again.' }, 500);
   }
-
-  return json({ ok: true, message: 'Message sent successfully.' }, 201);
 };
