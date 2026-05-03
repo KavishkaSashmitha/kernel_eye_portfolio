@@ -1,56 +1,84 @@
 ---
+
 ---
 
 <section id="achievements" class="py-16 relative bg-zinc-900/30">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-10 reveal">
-      <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
+      <h2
+        class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white"
+      >
         Research Achievement
       </h2>
       <p class="text-slate-400 mt-3 max-w-2xl mx-auto">
-        Key recognition, research outputs, and public presentations from the KernelEye journey.
+        Key recognition, research outputs, and public presentations from the
+        KernelEye journey.
       </p>
     </div>
 
-    <!-- Coming Soon Banner -->
-    <div class="glass-soft rounded-2xl border border-white/10 p-10 reveal flex flex-col items-center justify-center text-center mb-8">
-      <div class="w-14 h-14 rounded-full bg-sky-500/10 border border-sky-400/25 flex items-center justify-center mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-sky-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
-        </svg>
-      </div>
-      <h3 class="text-lg font-semibold text-white mb-2">Coming Soon</h3>
-      <p class="text-sm text-slate-400 max-w-md">Research achievements and recognition milestones will be published here once the work is formally presented and validated.</p>
-    </div>
-
-    <!-- Skeleton Cards -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mb-8">
-      {[0, 1, 2].map(() => (
-        <div class="glass-soft rounded-2xl p-5 border border-white/10 animate-pulse">
-          <div class="flex items-center justify-between gap-3 mb-3">
-            <div class="h-4 bg-white/10 rounded-full w-2/3"></div>
-            <div class="h-4 bg-white/10 rounded-full w-16"></div>
-          </div>
-          <div class="space-y-2 mb-4">
-            <div class="h-3 bg-white/10 rounded-full w-full"></div>
-            <div class="h-3 bg-white/10 rounded-full w-5/6"></div>
-            <div class="h-3 bg-white/10 rounded-full w-4/6"></div>
-          </div>
-          <div class="flex gap-1.5">
-            <div class="h-5 bg-white/10 rounded-full w-16"></div>
-            <div class="h-5 bg-white/10 rounded-full w-20"></div>
-            <div class="h-5 bg-white/10 rounded-full w-14"></div>
+    <!-- Achievement Card: ICCAI 2026 -->
+    <div
+      class="glass-soft rounded-2xl border border-white/10 p-6 md:p-8 reveal mb-8 hover:border-sky-400/30 transition-all"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+        <!-- Content -->
+        <div>
+          <h3 class="text-2xl font-bold text-white mb-2">
+            ICCAI 2026 Presentation
+          </h3>
+          <p class="text-slate-300 mb-4">
+            Presented "Architectural Optimization of Kubernetes Using
+            Intelligent Telemetry via eBPF" at the 12th International Conference
+            on Computing and Artificial Intelligence in Okinawa, Japan (April
+            24–27, 2026).
+          </p>
+          <div class="space-y-2">
+            <p class="text-slate-400">
+              <span class="text-sky-400 font-semibold">📍 Location:</span> Okinawa,
+              Japan
+            </p>
+            <p class="text-slate-400">
+              <span class="text-sky-400 font-semibold">📅 Dates:</span> April 24–27,
+              2026
+            </p>
           </div>
         </div>
-      ))}
+
+        <!-- Image -->
+        <div class="rounded-xl overflow-hidden border border-sky-400/30">
+          <img
+            src="/images/achievement/presented.JPG"
+            alt="ICCAI 2026 Presentation"
+            class="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      </div>
     </div>
 
-    <!-- Skeleton Grid -->
-    <div class="glass-soft rounded-2xl border border-white/10 p-5 reveal animate-pulse">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        {[0, 1, 2, 3].map(() => (
-          <div class="rounded-xl bg-white/5 border border-white/10 h-24"></div>
-        ))}
+    <!-- Research Topics -->
+    <div class="glass-soft rounded-2xl border border-white/10 p-6 reveal">
+      <p
+        class="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4"
+      >
+        Research Topics
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-sky-500/10 border border-sky-400/25 text-sky-300 text-sm font-medium"
+          >Kubernetes</span
+        >
+        <span
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-400/25 text-purple-300 text-sm font-medium"
+          >eBPF</span
+        >
+        <span
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-400/25 text-amber-300 text-sm font-medium"
+          >Telemetry</span
+        >
+        <span
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-400/25 text-emerald-300 text-sm font-medium"
+          >Cloud Native</span
+        >
       </div>
     </div>
   </div>
