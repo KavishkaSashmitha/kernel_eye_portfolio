@@ -1,46 +1,96 @@
 ---
 const documents = [
   { title: "Project Charter", url: "#", status: "Completed" },
-  { title: "Proposal Document", url: "https://drive.google.com/drive/folders/1WzpusLXCDtvi-I2WINaabc-CepK4GI6W?usp=sharing", status: "Completed" },
-  { title: "Checklist Documents", url: "#", status: "Pending" },
-  { title: "Final Documents ", url: "-https://drive.google.com/drive/folders/1OitD1ACqrRqygVvs9vIgISmZJr1YpY9c?usp=sharing", status: "Pending" },
-  { title: "Research Paper ", url: "https://drive.google.com/file/d/1o84utyzNZ3M0QCif7oDfj_ttjyhZrnTI/view?usp=sharing", status: "Completed" },
-  
+  {
+    title: "Proposal Document",
+    url: "https://drive.google.com/drive/folders/1WzpusLXCDtvi-I2WINaabc-CepK4GI6W?usp=sharing",
+    status: "Completed",
+  },
+  {
+    title: "Checklist Documents",
+    url: "https://drive.google.com/drive/folders/1KLd-VrLU0CfX2pYM7Qdtlp91kvswNgDj?usp=sharing",
+    status: "Pending",
+  },
+  {
+    title: "Final Documents [Draft]",
+    url: "https://drive.google.com/drive/folders/1OitD1ACqrRqygVvs9vIgISmZJr1YpY9c?usp=sharing",
+    status: "Pending",
+  },
+  {
+    title: "Research Paper ",
+    url: "https://drive.google.com/file/d/1o84utyzNZ3M0QCif7oDfj_ttjyhZrnTI/view?usp=sharing",
+    status: "Completed",
+  },
 ];
 
 const presentations = [
-  { title: "Proposal Presentation", url: "https://drive.google.com/file/d/1W4bP6fZUgI4g0wzNWet1l_kBDSgRy1Nk/view?usp=sharing", status: "Completed" },
-  { title: "Progress Presentation - 1", url: "https://drive.google.com/file/d/1R53zpnufp4wdBFS-moaW9kCB2lnq3jNY/view?usp=sharing", status: "Completed" },
-  { title: "Progress Presentation - 2", url: "https://drive.google.com/file/d/1lFXmO2KFVdIa5iSoN6Ri3P4mR8I0yFB5/view?usp=sharing", status: "Completed" },
-  { title: "Final Presentation", url: "#", status: "Pending" },
-  
+  {
+    title: "Proposal Presentation",
+    url: "https://drive.google.com/file/d/1W4bP6fZUgI4g0wzNWet1l_kBDSgRy1Nk/view?usp=sharing",
+    status: "Completed",
+  },
+  {
+    title: "Progress Presentation - 1",
+    url: "https://drive.google.com/file/d/1R53zpnufp4wdBFS-moaW9kCB2lnq3jNY/view?usp=sharing",
+    status: "Completed",
+  },
+  {
+    title: "Progress Presentation - 2",
+    url: "https://drive.google.com/file/d/1lFXmO2KFVdIa5iSoN6Ri3P4mR8I0yFB5/view?usp=sharing",
+    status: "Completed",
+  },
+  {
+    title: "Final Presentation",
+    url: "https://drive.google.com/file/d/1X8vY9zZQzZQzZQzZQzZQzZQzZQzZQzZ/view?usp=sharing",
+    status: "Pending",
+  },
 ];
 ---
 
 <section id="downloads" class="py-16 relative">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 reveal">
+    <div
+      class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8 reveal"
+    >
       <div>
-        <h2 class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white">
+        <h2
+          class="text-3xl md:text-4xl font-bold font-heading tracking-tight text-white"
+        >
           Documents & Presentations
         </h2>
         <p class="mt-2 text-slate-300 text-sm">
-          Access produced files and placeholders for pending submissions. Links can be updated anytime.
+          Access produced files and placeholders for pending submissions. Links
+          can be updated anytime.
         </p>
       </div>
-      <div class="glass-soft rounded-xl px-4 py-2.5 border border-white/10 text-sm shrink-0">
+      <div
+        class="glass-soft rounded-xl px-4 py-2.5 border border-white/10 text-sm shrink-0"
+      >
         <span class="text-slate-400">Project ID: </span>
         <span class="text-white font-semibold">25-26J-434</span>
       </div>
     </div>
 
     <div class="mb-6 reveal">
-      <div class="inline-flex rounded-xl p-1 bg-white/5 border border-white/10" role="tablist" aria-label="Resources tabs">
-        <button type="button" data-resource-tab="documents" class="resource-tab px-4 py-2 rounded-lg text-sm font-medium bg-sky-600 text-white" aria-selected="true">
+      <div
+        class="inline-flex rounded-xl p-1 bg-white/5 border border-white/10"
+        role="tablist"
+        aria-label="Resources tabs"
+      >
+        <button
+          type="button"
+          data-resource-tab="documents"
+          class="resource-tab px-4 py-2 rounded-lg text-sm font-medium bg-sky-600 text-white"
+          aria-selected="true"
+        >
           Documents
         </button>
-        <button type="button" data-resource-tab="presentations" class="resource-tab px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white" aria-selected="false">
+        <button
+          type="button"
+          data-resource-tab="presentations"
+          class="resource-tab px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white"
+          aria-selected="false"
+        >
           Presentations
         </button>
       </div>
@@ -48,93 +98,152 @@ const presentations = [
 
     <div id="documents" data-resource-panel="documents" class="mb-12">
       <div class="flex items-center justify-between mb-5 reveal">
-        <h3 class="text-2xl font-semibold text-white tracking-tight">Documents</h3>
+        <h3 class="text-2xl font-semibold text-white tracking-tight">
+          Documents
+        </h3>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {documents.map((item) => (
-          <div class="glass-soft card-hover rounded-2xl p-5 border border-white/10 flex flex-col justify-between reveal">
-            <div>
-              <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center mb-4">
-                <svg class="w-5 h-5 text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+        {
+          documents.map((item) => (
+            <div class="glass-soft card-hover rounded-2xl p-5 border border-white/10 flex flex-col justify-between reveal">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center mb-4">
+                  <svg
+                    class="w-5 h-5 text-sky-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.8"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <h4 class="text-base font-semibold text-white mb-2 tracking-tight">
+                  {item.title}
+                </h4>
+                <p class="text-xs text-slate-300">{item.status}</p>
               </div>
-              <h4 class="text-base font-semibold text-white mb-2 tracking-tight">{item.title}</h4>
-              <p class="text-xs text-slate-300">{item.status}</p>
-            </div>
 
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noreferrer"
-              class="focus-ring mt-5 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-sky-600 hover:bg-sky-500 text-white"
-            >
-              View Link
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
-        ))}
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                class="focus-ring mt-5 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-sky-600 hover:bg-sky-500 text-white"
+              >
+                View Link
+                <svg
+                  class="w-3.5 h-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            </div>
+          ))
+        }
       </div>
     </div>
 
     <div id="presentations" data-resource-panel="presentations" class="hidden">
       <div class="flex items-center justify-between mb-5 reveal">
-        <h3 class="text-2xl font-semibold text-white tracking-tight">Presentations (Slides)</h3>
+        <h3 class="text-2xl font-semibold text-white tracking-tight">
+          Presentations (Slides)
+        </h3>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {presentations.map((item) => (
-          <div class="glass-soft card-hover rounded-2xl p-5 border border-white/10 flex flex-col justify-between reveal">
-            <div>
-              <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center mb-4">
-                <svg class="w-5 h-5 text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14m-6 4h6a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
+        {
+          presentations.map((item) => (
+            <div class="glass-soft card-hover rounded-2xl p-5 border border-white/10 flex flex-col justify-between reveal">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-sky-500/15 border border-sky-400/25 flex items-center justify-center mb-4">
+                  <svg
+                    class="w-5 h-5 text-sky-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.8"
+                      d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14m-6 4h6a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h4 class="text-base font-semibold text-white mb-2 tracking-tight">
+                  {item.title}
+                </h4>
+                <p class="text-xs text-slate-300">{item.status}</p>
               </div>
-              <h4 class="text-base font-semibold text-white mb-2 tracking-tight">{item.title}</h4>
-              <p class="text-xs text-slate-300">{item.status}</p>
-            </div>
 
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noreferrer"
-              class="focus-ring mt-5 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-sky-600 hover:bg-sky-500 text-white"
-            >
-              View Link
-              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-          </div>
-        ))}
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                class="focus-ring mt-5 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-sky-600 hover:bg-sky-500 text-white"
+              >
+                View Link
+                <svg
+                  class="w-3.5 h-3.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            </div>
+          ))
+        }
       </div>
     </div>
-
   </div>
 </section>
 
 <script>
-  const tabButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.resource-tab'));
-  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-resource-panel]'));
+  const tabButtons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>(".resource-tab"),
+  );
+  const panels = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-resource-panel]"),
+  );
 
   function activateResourceTab(tab: string) {
     panels.forEach((panel) => {
-      panel.classList.toggle('hidden', panel.dataset.resourcePanel !== tab);
+      panel.classList.toggle("hidden", panel.dataset.resourcePanel !== tab);
     });
 
     tabButtons.forEach((button) => {
       const isActive = button.dataset.resourceTab === tab;
-      button.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      button.classList.toggle('bg-sky-600', isActive);
-      button.classList.toggle('text-white', isActive);
-      button.classList.toggle('text-slate-300', !isActive);
+      button.setAttribute("aria-selected", isActive ? "true" : "false");
+      button.classList.toggle("bg-sky-600", isActive);
+      button.classList.toggle("text-white", isActive);
+      button.classList.toggle("text-slate-300", !isActive);
     });
   }
 
   tabButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+    button.addEventListener("click", () => {
       const tab = button.dataset.resourceTab;
       if (tab) activateResourceTab(tab);
     });
